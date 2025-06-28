@@ -3,8 +3,8 @@ import services.UserAuthServices;
 
 import java.util.Scanner;
 
-public class Welcome {
-    public static void welocme(){
+public class CustomerPage {
+    public static void customer(){
         Scanner sc = new Scanner(System.in);
         System.out.println("*****Welcome To Zomato*****");
         System.out.println("");
@@ -48,7 +48,9 @@ public class Welcome {
                 break;
             }
             else if(choice == 4){
-                Welcome.welocme();
+                CustomerPage.customer();
+            }else{
+                System.out.println("❌ Invalid option.");
             }
 
             System.out.println("---Choose any 1---");
