@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserStore {
-    private Map<String, User> users = new HashMap<>();
+    private static Map<String, User> users = new HashMap<>();
 
     public boolean addUser(User user){
         if(!users.containsKey(user.getEmail())){
