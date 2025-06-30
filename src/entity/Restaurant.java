@@ -3,6 +3,8 @@ package entity;
 import java.util.*;
 
 public class Restaurant {
+    private static int counter = 1;
+    private int id;
     private String Email;
     private String password;
     private String name;
@@ -11,6 +13,7 @@ public class Restaurant {
     private List<Order> orders;
 
     public Restaurant(String Email, String password, String name, String Location) {
+        this.id = counter++;
         this.Email = Email;
         this.password = password;
         this.name = name;
@@ -61,5 +64,13 @@ public class Restaurant {
         for (Order order : orders) {
             System.out.println(order);
         }
+    }
+
+    public String getUsername() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
     }
 }

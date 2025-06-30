@@ -4,9 +4,12 @@ import entity.Restaurant;
 import repository.RestaurantStore;
 import services.RestaurantAuthServices;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class RestaurantPage {
+    static boolean isLogin = false;
+    static boolean isRegister = false;
     public static void restaurant(){
         Scanner sc = new Scanner(System.in);
         AuthController authController = new RestaurantAuthServices();
@@ -15,8 +18,7 @@ public class RestaurantPage {
         System.out.println("        🍽️  Welcome to Zomato  🍽️");
         System.out.println("=====================================\n");
 
-        boolean isRegister = false;
-        boolean isLogin = false;
+
 
         while (true){
 
@@ -78,6 +80,7 @@ public class RestaurantPage {
                 }
                 case 3 :
                     System.out.println("👋 Thank you for using Zomato. Goodbye!");
+                    Welcome.main();
                     return;
                 case 4 : {
                     System.out.println("👋 Logged out successfully.");
@@ -134,6 +137,32 @@ public class RestaurantPage {
                 restaurantStore.update(restaurant);
                 System.out.println("✅ Item updated.");
             }
+            else if (option == 3) {
+                System.out.print("Enter item ID to remove: ");
+                int id = sc.nextInt(); sc.nextLine();
+                restaurant.removeMenuItem(id);
+                restaurantStore.update(restaurant);
+                System.out.println("✅ Item removed.");
+            }else if (option == 4) {
+                System.out.println("📋 Menu Items:");
+                List<MenuItem> items = restaurant.getMenuItems();
+                if (items.isEmpty()) {
+                    System.out.println("❌ No menu items found.");
+                } else {
+                    for (MenuItem item : items) {
+                        System.out.println("🆔 " + item.getId() + " | 🍽️ " + item.getName() + " | 💰 ₹" + item.getPrice());
+                    }
+                }
+            }
+            else if (option == 5) {
+                System.out.println("👋 Logging out...");
+                isLogin = false;
+                isRegister = false;
+                break;
+            }else {
+                System.out.println("❌ Invalid option.");
+            }
         }
+
     }
 }
